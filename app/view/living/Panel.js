@@ -1,7 +1,5 @@
-/**
- * This view is an example list of people.
- */
-Ext.define('controlH.view.main.Panel', {
+
+Ext.define('controlH.view.audio.Panel', {
     extend: 'Ext.grid.Panel',
     xtype: 'livingroom',
 
@@ -9,7 +7,7 @@ Ext.define('controlH.view.main.Panel', {
         'controlH.store.Personnel'
     ],
 
-    title: 'Personnel',
+    title: 'Living Room',
 
     store: {
         type: 'personnel'

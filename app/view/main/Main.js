@@ -11,8 +11,7 @@ Ext.define('controlH.view.main.Main', {
 
     requires: [
         'Ext.plugin.Viewport',
-        'controlH.view.main.MainController',
-        'controlH.view.main.Panel'
+        'controlH.view.main.MainController'
     ],
 
     controller: 'main',
@@ -29,8 +28,8 @@ Ext.define('controlH.view.main.Main', {
         title: {
             text: 'controlH',
             flex: 0
-        },
-        iconCls: 'fa-th-list'
+        }, 
+        iconCls: 'fa-th-list' //Change this to a custom icon of cH when it is minimized
     },
 
     tabBar: {
@@ -69,19 +68,28 @@ Ext.define('controlH.view.main.Main', {
     },
 
     items: [{
-        title: 'Livingroom',
-        iconCls: 'fa-home',
+        title: 'Living Room',
+        iconCls: 'fa-home', //Custom icon?
         items: [{
             xtype: 'livingroom'
         }]
     }, {
-        title: 'Kitchen',
-        iconCls: 'fa-cutlery'
+        title: 'Knitting Room',
+        iconCls: 'fa-heart', //Custom icon?
+        items: [{
+            xtype: 'knitting'
+        }]
     }, {
         title: 'Bedrooms',
-        iconCls: 'fa-bed'
+        iconCls: 'fa-bed', //Custom icon?
+        items: [{
+            xtype: 'bedrooms'
+        }]
     }, {
         title: 'Audio',
-        iconCls: 'fa-music'
+        iconCls: 'fa-music', //Custom icon?
+        items: [{
+            xtype: 'audio'
+        }]
     }]
 });
