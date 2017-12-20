@@ -1,7 +1,7 @@
 /**
  * This view is an example list of people.
  */
-Ext.define('controlH.view.main.List', {
+Ext.define('controlH.view.main.Panel', {
     extend: 'Ext.grid.Panel',
     xtype: 'mainlist',
 

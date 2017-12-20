@@ -11,16 +11,11 @@ Ext.define('controlH.view.main.Main', {
 
     requires: [
         'Ext.plugin.Viewport',
-        'Ext.window.MessageBox',
-
         'controlH.view.main.MainController',
-        'controlH.view.main.MainModel',
-        'controlH.view.main.List'
+        'controlH.view.main.Panel'
     ],
 
     controller: 'main',
-    viewModel: 'main',
-
     ui: 'navigation',
 
     tabBarHeaderPosition: 1,
@@ -32,9 +27,7 @@ Ext.define('controlH.view.main.Main', {
             align: 'stretchmax'
         },
         title: {
-            bind: {
-                text: '{name}'
-            },
+            text: 'controlH',
             flex: 0
         },
         iconCls: 'fa-th-list'
@@ -78,27 +71,17 @@ Ext.define('controlH.view.main.Main', {
     items: [{
         title: 'Home',
         iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
         items: [{
             xtype: 'mainlist'
         }]
     }, {
         title: 'Users',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        iconCls: 'fa-user'
     }, {
         title: 'Groups',
-        iconCls: 'fa-users',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        iconCls: 'fa-users'
     }, {
         title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        iconCls: 'fa-cog'
     }]
 });
