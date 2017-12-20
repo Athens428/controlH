@@ -69,19 +69,19 @@ Ext.define('controlH.view.main.Main', {
     },
 
     items: [{
-        title: 'Home',
+        title: 'Livingroom',
         iconCls: 'fa-home',
         items: [{
-            xtype: 'mainlist'
+            xtype: 'livingroom'
         }]
     }, {
-        title: 'Users',
-        iconCls: 'fa-user'
+        title: 'Kitchen',
+        iconCls: 'fa-cutlery'
     }, {
-        title: 'Groups',
-        iconCls: 'fa-users'
+        title: 'Bedrooms',
+        iconCls: 'fa-bed'
     }, {
-        title: 'Settings',
-        iconCls: 'fa-cog'
+        title: 'Audio',
+        iconCls: 'fa-music'
     }]
 });

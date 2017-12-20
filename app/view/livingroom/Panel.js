@@ -3,7 +3,7 @@
  */
 Ext.define('controlH.view.main.Panel', {
     extend: 'Ext.grid.Panel',
-    xtype: 'mainlist',
+    xtype: 'livingroom',
 
     requires: [
         'controlH.store.Personnel'
