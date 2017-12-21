@@ -1,25 +1,19 @@
 
 Ext.define('controlH.view.audio.Panel', {
-    extend: 'Ext.grid.Panel',
+    extend: 'Ext.panel.Panel',
     xtype: 'livingroom',
-
-    requires: [
-        'controlH.store.Personnel'
-    ],
-
+    requires: [],
     title: 'Living Room',
-
-    store: {
-        type: 'personnel'
-    },
-
-    columns: [
-        { text: 'Name',  dataIndex: 'name' },
-        { text: 'Email', dataIndex: 'email', flex: 1 },
-        { text: 'Phone', dataIndex: 'phone', flex: 1 }
-    ],
-
     listeners: {
         select: 'onItemSelected'
-    }
+    },
+    items: [
+        {
+            xtype: 'button',
+            text: 'Click here',
+            handler: function() {
+                this.toggle();
+            }
+        }
+    ]
 });
