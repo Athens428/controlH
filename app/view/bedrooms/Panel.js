@@ -3,7 +3,7 @@ Ext.define('controlH.view.bedrooms.Panel', {
     extend: 'Ext.panel.Panel',
     xtype: 'bedrooms',
     requires: [],
-    title: 'Living Room',
+    title: 'Bedrooms',
     listeners: {
         select: 'onItemSelected'
     }

@@ -209,6 +209,10 @@
         {
             "path": "app.js",
             "bundle": true
+        },
+        {
+            "path": "settings",
+            "remote": true
         }
     ],
 
