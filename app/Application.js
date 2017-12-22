@@ -5,18 +5,14 @@
  */
 Ext.define('controlH.Application', {
     extend: 'Ext.app.Application',
-
     name: 'controlH',
-
     quickTips: false,
-    platformConfig: {
-        desktop: {
-            quickTips: true
-        }
-    },
-
+    stores: [
+        'controlH.store.Entities'
+    ],
     onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+        Ext.Msg.confirm('Application Update',
+                'This application has an update, reload?',
                 function (choice) {
                     if (choice === 'yes') {
                         window.location.reload();
@@ -24,46 +20,38 @@ Ext.define('controlH.Application', {
                 }
         );
     },
-
-    launch: function() {
+    launch: function () {
         var me = this;
         controlH.getApi = function () {
             return controlH.api;
         };
         me.buildStores();
     },
-
     buildStores: function () {
+        var baseUrl = controlH.getApi().base;
         var stateUrl = controlH.getApi().states;
         Ext.Ajax.request({
-            url: stateUrl,
+            url: baseUrl,
             method: 'GET',
-            withCredentials: true,
             headers: {
-                'Content-Type': 'application/json',
+                //'Content-Type': 'application/json',
                 'x-ha-access': 'BHsj12!@'
             },
             success: function (response) {
                 if (response.responseText) {
                     var responseText = Ext.decode(response.responseText);
-                    console.log(responseText);
-                    /*if (responseText["_links"]) {
-                        var links = responseText["_links"];
-
-                        Ext.create('STAKE.store.Regions', {
-                            storeId: 'regions',
-                            autoLoad: true
-                        }).getProxy().setApi({
-                            create: links.RegionSave.href,
-                            read: links.RegionFindAll.href,
-                            update: links.RegionSave.href,
-                            destroy: links.RegionDelete.href
-                        });
-                    }*/
+                    //Entity Store
+                    Ext.create('controlH.store.Entities', {
+                        storeId: 'entities',
+                        autoLoad: true,
+                        autoSync: true
+                    }).getModel().getProxy().setApi({
+                        read: stateUrl
+                    });
                 }
             },
             failure: function (response) {
-                console.log("Error retrieving operations links");
+                console.log("Error during API call");
             }
         });
     }

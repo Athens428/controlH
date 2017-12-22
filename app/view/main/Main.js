@@ -42,7 +42,7 @@ Ext.define('controlH.view.main.Main', {
 
     responsiveConfig: {
         tall: {
-            headerPosition: 'top'
+            headerPosition: 'bottom'
         },
         wide: {
             headerPosition: 'left'
