@@ -6,6 +6,7 @@
 Ext.define('controlH.Application', {
     extend: 'Ext.app.Application',
     name: 'controlH',
+    mainView: 'controlH.view.main.Main',
     quickTips: false,
     stores: [
         'controlH.store.Entities'
@@ -15,7 +16,8 @@ Ext.define('controlH.Application', {
                 'This application has an update, reload?',
                 function (choice) {
                     if (choice === 'yes') {
-                        window.location.reload();
+                        //window.location.reload();
+                        console.log('reloaded');
                     }
                 }
         );
@@ -28,6 +30,7 @@ Ext.define('controlH.Application', {
         me.buildStores();
     },
     buildStores: function () {
+        var me = this;
         var baseUrl = controlH.getApi().base;
         var stateUrl = controlH.getApi().states;
         Ext.Ajax.request({
@@ -46,7 +49,10 @@ Ext.define('controlH.Application', {
                         autoLoad: true,
                         autoSync: true
                     }).getModel().getProxy().setApi({
-                        read: stateUrl
+                        create: stateUrl,
+                        read: stateUrl,
+                        update: stateUrl,
+                        destroy: stateUrl
                     });
                 }
             },

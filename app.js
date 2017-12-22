@@ -11,8 +11,5 @@ Ext.application({
         // This will automatically load all classes in the controlH namespace
         // so that application classes do not need to require each other.
         'controlH.*'
-    ],
-
-    // The name of the initial view to create.
-    mainView: 'controlH.view.main.Main'
+    ]
 });

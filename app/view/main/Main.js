@@ -8,19 +8,16 @@
 Ext.define('controlH.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
-
+    itemId: 'mainPanel',
     requires: [
         'Ext.plugin.Viewport',
         'controlH.view.main.MainController'
     ],
-
     controller: 'main',
     ui: 'navigation',
-
     tabBarHeaderPosition: 1,
     titleRotation: 0,
     tabRotation: 0,
-
     header: {
         layout: {
             align: 'stretchmax'
@@ -28,10 +25,9 @@ Ext.define('controlH.view.main.Main', {
         title: {
             text: 'controlH',
             flex: 0
-        }, 
+        },
         iconCls: 'fa-th-list' //Change this to a custom icon of cH when it is minimized
     },
-
     tabBar: {
         flex: 1,
         layout: {
@@ -39,7 +35,6 @@ Ext.define('controlH.view.main.Main', {
             overflowHandler: 'none'
         }
     },
-
     responsiveConfig: {
         tall: {
             headerPosition: 'bottom'
@@ -48,7 +43,6 @@ Ext.define('controlH.view.main.Main', {
             headerPosition: 'left'
         }
     },
-
     defaults: {
         bodyPadding: 20,
         tabConfig: {
@@ -66,30 +60,28 @@ Ext.define('controlH.view.main.Main', {
             }
         }
     },
-
+    listeners: {
+        loaddata: 'loadStoreData'
+    },
     items: [{
-        title: 'Living Room',
-        iconCls: 'fa-home', //Custom icon?
-        items: [{
-            xtype: 'livingroom'
+            title: 'Living Room',
+            iconCls: 'fa-home', //Custom icon?
+            reference: 'livingroom'
+
+        }, {
+            title: 'Knitting Room',
+            iconCls: 'fa-heart', //Custom icon?
+            reference: 'knittingroom'
+
+        }, {
+            title: 'Bedrooms',
+            iconCls: 'fa-bed', //Custom icon?
+            reference: 'bedrooms'
+
+        }, {
+            title: 'Audio',
+            iconCls: 'fa-music', //Custom icon?
+            reference: 'music'
+
         }]
-    }, {
-        title: 'Knitting Room',
-        iconCls: 'fa-heart', //Custom icon?
-        items: [{
-            xtype: 'knitting'
-        }]
-    }, {
-        title: 'Bedrooms',
-        iconCls: 'fa-bed', //Custom icon?
-        items: [{
-            xtype: 'bedrooms'
-        }]
-    }, {
-        title: 'Audio',
-        iconCls: 'fa-music', //Custom icon?
-        items: [{
-            xtype: 'audio'
-        }]
-    }]
 });
