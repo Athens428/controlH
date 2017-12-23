@@ -48,7 +48,7 @@ Ext.define('controlH.Application', {
                         storeId: 'entities',
                         autoLoad: true,
                         autoSync: true
-                    }).getModel().getProxy().setApi({
+                    }).getProxy().setApi({
                         create: stateUrl,
                         read: stateUrl,
                         update: stateUrl,

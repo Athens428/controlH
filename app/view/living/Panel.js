@@ -14,20 +14,22 @@ Ext.define('controlH.view.audio.Panel', {
                 {
                     xtype: 'button',
                     enableToggle: true,
-                    text: entityStore.getById('switch.door_bell').get('state').toUpperCase(),
+                    text: entityStore.getById('switch.door_bell').get('state'),
+                    pressed: (entityStore.getById('switch.door_bell').get('state') === 'ON') ? true : false,
                     toggleHandler: function (button, pressed) {
                         var record = entityStore.getById('switch.door_bell');
                         var text = (pressed) ? 'ON' : 'OFF';
                         record.set('state', text);
-                        record.save({
+                        button.setText(text);
+                        /*record.save({
                             success: function () {
-                                button.setText(text);
+                                
                             },
                             failure: function () {
                                 Ext.toast('Error setting button');
                             },
                             scope: me
-                        });
+                        });*/
                     }
                 }
             ]
