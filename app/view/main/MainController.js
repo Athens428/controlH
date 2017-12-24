@@ -7,15 +7,6 @@ Ext.define('controlH.view.main.MainController', {
     alias: 'controller.main',
     
     init: function() {
-        
-    },
-    loadStoreData: function(store) {
-        var me = this;
-        me.getView().items.items[0].add({
-            xtype: 'livingroom',
-            entitiesStore: store
-        });
-       
-        
+        this.me = this;
     }
 });

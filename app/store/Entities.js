@@ -4,17 +4,19 @@ Ext.define('controlH.store.Entities', {
     autoLoad: false,
     listeners: {
         load: function(me, records, successful) {
-            var test = Ext.ComponentQuery.query('app-main')[0];
-            test.fireEvent('loaddata', me);
+            var lrPanel = Ext.ComponentQuery.query('livingroom')[0];
+            if (lrPanel)
+                lrPanel.fireEvent('storeload', records);
         }
-    },
+    }/*,
     proxy: {
         type: 'rest',
         useDefaultXhrHeader: false,
         appendId: true,
         actionMethods: {
             read: 'GET',
-            update: 'POST'
+            update: 'POST',
+            create: 'POST'
         },
         headers: {
             'Accept': 'application/json',
@@ -36,6 +38,7 @@ Ext.define('controlH.store.Entities', {
             type: 'json',
             transform: {
                 fn: function (data) {
+                    //console.log(data);
                     if (data instanceof Array)
                     {
                         data.forEach(function(ent) {
@@ -52,5 +55,5 @@ Ext.define('controlH.store.Entities', {
                 scope: this
             }
         }
-    }
+    }*/
 });

@@ -6,7 +6,7 @@
 Ext.define('controlH.Application', {
     extend: 'Ext.app.Application',
     name: 'controlH',
-    mainView: 'controlH.view.main.Main',
+    //mainView: 'controlH.view.main.Main',
     quickTips: false,
     stores: [
         'controlH.store.Entities'
@@ -45,20 +45,36 @@ Ext.define('controlH.Application', {
                     var responseText = Ext.decode(response.responseText);
                     //Entity Store
                     Ext.create('controlH.store.Entities', {
-                        storeId: 'entities',
-                        autoLoad: true,
-                        autoSync: true
-                    }).getProxy().setApi({
+                        storeId: 'entities'
+                    }).getModel().getProxy().setApi({
                         create: stateUrl,
                         read: stateUrl,
                         update: stateUrl,
                         destroy: stateUrl
                     });
+
+                    //load the store and set main view once loaded
+                    Ext.getStore('entities').load({
+                        callback: function(records, operation, success) {
+                            me.setMainView('controlH.view.main.Main');
+                        }
+                    });
+                    
                 }
             },
             failure: function (response) {
                 console.log("Error during API call");
             }
         });
+        
+        //Start polling
+        var reloadStore = {
+            run: function() {
+                var store = Ext.getStore('entities');
+                if (store) store.load();
+            },
+            interval: 1000
+        };
+        Ext.TaskManager.start(reloadStore);
     }
 });

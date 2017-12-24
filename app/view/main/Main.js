@@ -61,27 +61,27 @@ Ext.define('controlH.view.main.Main', {
         }
     },
     listeners: {
-        loaddata: 'loadStoreData'
+        
     },
     items: [{
             title: 'Living Room',
             iconCls: 'fa-home', //Custom icon?
-            reference: 'livingroom'
-
+            items: [
+                {
+                    xtype: 'livingroom'
+                }
+            ]
         }, {
             title: 'Knitting Room',
-            iconCls: 'fa-heart', //Custom icon?
-            reference: 'knittingroom'
+            iconCls: 'fa-heart' //Custom icon?
 
         }, {
             title: 'Bedrooms',
-            iconCls: 'fa-bed', //Custom icon?
-            reference: 'bedrooms'
+            iconCls: 'fa-bed' //Custom icon?
 
         }, {
             title: 'Audio',
-            iconCls: 'fa-music', //Custom icon?
-            reference: 'music'
+            iconCls: 'fa-music' //Custom icon?
 
         }]
 });
