@@ -73,7 +73,7 @@ Ext.define('controlH.Application', {
                 var store = Ext.getStore('entities');
                 if (store) store.load();
             },
-            interval: 1000
+            interval: 15000
         };
         Ext.TaskManager.start(reloadStore);
     }
