@@ -7,32 +7,37 @@ Ext.define('controlH.view.audio.Panel', {
     //controller: '',
     initComponent: function () {
         var me = this;
-        var entityStore = Ext.getStore('entities');
-
-        //initialize buttons
-        var doorBell = entityStore.getById('switch.door_bell');
 
         Ext.apply(me, {
             title: 'Living Room',
             items: [
                 {
-                    xtype: 'ux-lighttogglebutton',
-                    light: 'door_bell'
-                }
-            ],
-            listeners: {
-                storeload: function (record,  fields) {
-                    doorBell = entityStore.getById('switch.door_bell');
-                    var dbCom = me.down('#door_bell');
-                    if (doorBell && (doorBell.data.state.toUpperCase() !== dbCom.getText()))
-                    {
-                        var state = doorBell.data.state.toUpperCase();
-                        dbCom.setText(state);
-                        dbCom.setPressed((state === 'ON' ? true : false));
-                        dbCom.toggleCls('myimagebuttonon');
+                    xtype: 'ux-togglebutton',
+                    hassId: 'door_bell',
+                    type: 'switch',
+                    margin: {
+                        top: '1%',
+                        bottom: '0',
+                        left: '50%',
+                        right: '0'
                     }
-                }
-            }
+                },
+                {
+                    xtype: 'label',
+                    text: 'Door Bell',
+                    margin: {
+                        top: '14%',
+                        bottom: '0',
+                        left: '51%',
+                        right: '0'
+                    }
+                }/*,
+                {
+                    xtype: 'ux-togglebutton',
+                    hassId: 'front_porch_light',
+                    type: 'light'
+                }*/
+            ]
         });
         me.callParent(arguments);
     }

@@ -16,8 +16,7 @@ Ext.define('controlH.Application', {
                 'This application has an update, reload?',
                 function (choice) {
                     if (choice === 'yes') {
-                        //window.location.reload();
-                        console.log('reloaded');
+                        window.location.reload();
                     }
                 }
         );
@@ -64,7 +63,7 @@ Ext.define('controlH.Application', {
                                 if (store)
                                     store.load();
                             },
-                            interval: 15000
+                            interval: 10000
                         };
                         Ext.TaskManager.start(reloadStore);
                         

@@ -8,7 +8,7 @@
 Ext.define('controlH.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
-    itemId: 'mainPanel',
+    reference: 'mainPanel',
     requires: [
         'Ext.plugin.Viewport',
         'controlH.view.main.MainController'
