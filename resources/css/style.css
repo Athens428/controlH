@@ -1,0 +1,9 @@
+.myimagebuttonoff {
+    width:200px!important; height:200px!important;
+    background-image: url('/resources/images/lightBulbOff.png') !important; background-color: transparent !important; border:none;
+}
+
+.myimagebuttonon {
+    width:200px!important; height:200px!important;
+    background-image: url('/resources/images/lightBulbOn.png') !important; background-color: transparent !important; border:none;
+}

@@ -27,54 +27,79 @@ Ext.define('controlH.Application', {
         controlH.getApi = function () {
             return controlH.api;
         };
+
+        var stateUrl = controlH.getApi().states;
+        Ext.create('controlH.store.Entities', {
+            storeId: 'entities'
+        }).getModel().getProxy().setApi({
+            create: stateUrl,
+            read: stateUrl,
+            update: stateUrl,
+            destroy: stateUrl
+        });
         me.buildStores();
     },
     buildStores: function () {
         var me = this;
         var baseUrl = controlH.getApi().base;
-        var stateUrl = controlH.getApi().states;
         Ext.Ajax.request({
             url: baseUrl,
             method: 'GET',
             headers: {
-                //'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
                 'x-ha-access': 'BHsj12!@'
             },
             success: function (response) {
                 if (response.responseText) {
                     var responseText = Ext.decode(response.responseText);
-                    //Entity Store
-                    Ext.create('controlH.store.Entities', {
-                        storeId: 'entities'
-                    }).getModel().getProxy().setApi({
-                        create: stateUrl,
-                        read: stateUrl,
-                        update: stateUrl,
-                        destroy: stateUrl
-                    });
 
                     //load the store and set main view once loaded
-                    Ext.getStore('entities').load({
-                        callback: function(records, operation, success) {
-                            me.setMainView('controlH.view.main.Main');
-                        }
+                    me.requestEntityLoad().then(function (records) {
+                        me.setMainView('controlH.view.main.Main');
+
+                        //Start polling
+                        var reloadStore = {
+                            run: function () {
+                                var store = Ext.getStore('entities');
+                                if (store)
+                                    store.load();
+                            },
+                            interval: 15000
+                        };
+                        Ext.TaskManager.start(reloadStore);
+                        
+                    }, function (err) {
+                        console.log(err);
                     });
-                    
+                } else {
+                    console.log('something failed');
                 }
             },
             failure: function (response) {
                 console.log("Error during API call");
             }
         });
-        
-        //Start polling
-        var reloadStore = {
-            run: function() {
-                var store = Ext.getStore('entities');
-                if (store) store.load();
-            },
-            interval: 15000
-        };
-        Ext.TaskManager.start(reloadStore);
+    },
+    requestEntityLoad: function () {
+        return new Ext.Promise(function (resolve, reject) {
+            //something asynchronous, like loading a store
+            Ext.getStore('entities').load({
+                callback: function (records, operation, success) {
+                    if (success) {
+                        if (records.length > 0) {
+                            //when it’s ok
+                            resolve(records);
+                        } else {
+                            //no results
+                            console.log('fail');
+                            reject(operation);
+                        }
+                    } else {
+                        //something bad happened
+                        reject(operation);
+                    }
+                }
+            });
+        });
     }
 });

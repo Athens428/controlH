@@ -16,26 +16,8 @@ Ext.define('controlH.view.audio.Panel', {
             title: 'Living Room',
             items: [
                 {
-                    xtype: 'button',
-                    itemId: 'door_bell',
-                    enableToggle: true,
-                    text: doorBell.get('state'),
-                    pressed: (doorBell.get('state') === 'ON') ? true : false,
-                    toggleHandler: function (button, pressed) {
-                        var text = (pressed) ? 'ON' : 'OFF';
-                        doorBell.set('state', text);
-                        //console.log(entityStore);
-                        doorBell.save({
-                            success: function () {
-                                button.setText(text);
-                            },
-                            failure: function () {
-                                Ext.toast('Error setting button');
-                                button.setPressed(!pressed);
-                            },
-                            scope: me
-                        });
-                    }
+                    xtype: 'ux-lighttogglebutton',
+                    light: 'door_bell'
                 }
             ],
             listeners: {
@@ -47,6 +29,7 @@ Ext.define('controlH.view.audio.Panel', {
                         var state = doorBell.data.state.toUpperCase();
                         dbCom.setText(state);
                         dbCom.setPressed((state === 'ON' ? true : false));
+                        dbCom.toggleCls('myimagebuttonon');
                     }
                 }
             }

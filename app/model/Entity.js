@@ -38,7 +38,6 @@ Ext.define('controlH.model.Entity', {
             type: 'json',
             transform: {
                 fn: function (data) {
-                    //console.log(data);
                     if (data instanceof Array)
                     {
                         data.forEach(function(ent) {

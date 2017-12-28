@@ -3,7 +3,10 @@
      *  An array of the paths to all the applications present in this workspace
      */
     "apps": [
-        ""
+        "",
+        "packages/local/theme-controlh/.sencha/temp/Themer",
+        "packages/local/controlH/.sencha/temp/Themer",
+        "packages/local/theme-controlH/.sencha/temp/Themer"
     ],
 
     /**
